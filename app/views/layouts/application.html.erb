@@ -8,26 +8,45 @@
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+    <!--script for semantic ui-->
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
 
   <header>
-    <nav>
-      <% if user_signed_in? %>
-        <strong><%= link_to current_user.email, pages_show_path %></strong>
-        <%= link_to 'プロフィール変更', edit_user_registration_path %>
-        <%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>
-      <% else %>
-        <%= link_to 'サインアップ', new_user_registration_path %>
-        <%= link_to 'ログイン', new_user_session_path %>
-      <% end %>
+    <nav class="ui secondary menu">
+    <div class="ui container">
+      <a href="/" class="header item">OutPut</a>
+      <a href="#" class="item">Groups</a>
+      <a href="#" class="item">Friend</a>
+      
+      <div class="right menu">
+        <div class="item ui dropdown">
+          <div class="text">ユーザー</div>
+          <i class="dropdown icon"></i>
+          <div class="menu">
+            <% if user_signed_in? %>
+              <strong><%= link_to current_user.email, pages_show_path, class: "item" %></strong>
+              <%= link_to 'プロフィール変更', edit_user_registration_path, class: "item" %>
+              <%= link_to 'ログアウト', destroy_user_session_path, class: "item", method: :delete %>
+            <% else %>
+              <%= link_to 'サインアップ', new_user_registration_path, class: "item" %>
+              <%= link_to 'ログイン', new_user_session_path, class: "item" %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
     </nav>
   </header>
   <%# flash message %>
+  <main class="ui container">
   <p class="notice"><%= notice %></p>
   <p class="alert"><%= alert %></p>
 
     <%= yield %>
+  </main>
   </body>
 </html>

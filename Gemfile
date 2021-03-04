@@ -57,3 +57,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'devise'
 gem 'omniauth', '1.9.1'
 gem 'omniauth-twitter'
+
+# Semantic UI
+gem 'semantic-ui-sass'
