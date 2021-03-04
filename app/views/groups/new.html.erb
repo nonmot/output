@@ -1,6 +1,10 @@
-<%= form_with scope: :group, url: groups_create_path, local: true do |f| %>
-    <%= f.label :title %>
-    <%= f.text_field :title %>
+<div class="ui container">
+    <%= form_with scope: :group, url: groups_create_path, local: true, html: {class: "ui form"} do |f| %>
+        <div class="field">
+            <%= f.label :title %>
+            <%= f.text_field :title %>
+        </div>
 
-    <%= f.submit %>
-<% end %>
+        <%= f.submit "グループ作成", class: "ui button" %>
+    <% end %>
+</div>

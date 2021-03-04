@@ -1,0 +1,8 @@
+<div class="ui container">
+    <%= link_to "グループ作成", groups_new_path, class: "ui button right floated" %>
+    <ul>
+        <% @groups.each do |group| %>
+            <p><%= group.title %></p>
+        <% end %>
+    </ul>
+</div>

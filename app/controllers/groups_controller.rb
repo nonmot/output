@@ -1,14 +1,20 @@
 class GroupsController < ApplicationController
+    before_action :authenticate_user!
+
+    def index
+        @groups = current_user.groups.all
+    end
 
     def new
-        @group = Group.new
+        @group = current_user.groups.build
     end
     
     def create
-        @group = Group.new(group_params)
+        @group = current_user.groups.build(group_params)
+        @group.users << current_user
         @group.user_id = current_user.id
         if @group.save
-            redirect_to "/pages/show"
+            redirect_to "/groups"
             flash[:success] = "グループを作成しました！"
         else
             flash[:danger] = "グループの作成に失敗しました。"

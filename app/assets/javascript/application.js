@@ -2,6 +2,7 @@
 //= require semantic-ui
 
 // ドロップダウンを使用するためのコード
-$(function(){
+$(function () {
     $('.ui.dropdown').dropdown();
-})
+
+});

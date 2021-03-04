@@ -17,34 +17,37 @@
 
   <header>
     <nav class="ui secondary menu">
-    <div class="ui container">
-      <a href="/" class="header item">OutPut</a>
-      <a href="#" class="item">Groups</a>
-      <a href="#" class="item">Friend</a>
-      
-      <div class="right menu">
-        <div class="item ui dropdown">
-          <div class="text">ユーザー</div>
-          <i class="dropdown icon"></i>
-          <div class="menu">
-            <% if user_signed_in? %>
-              <strong><%= link_to current_user.email, pages_show_path, class: "item" %></strong>
-              <%= link_to 'プロフィール変更', edit_user_registration_path, class: "item" %>
-              <%= link_to 'ログアウト', destroy_user_session_path, class: "item", method: :delete %>
-            <% else %>
-              <%= link_to 'サインアップ', new_user_registration_path, class: "item" %>
-              <%= link_to 'ログイン', new_user_session_path, class: "item" %>
-            <% end %>
-          </div>
+      <div class="ui container">
+        <a href="/" class="header item">OutPut</a>
+        <a href="/groups" class="item">Groups</a>
+        <a href="#" class="item">Friend</a>
+        
+        <div class="right menu">
+          <% if user_signed_in? %>
+            <div class="item ui dropdown">
+              <div class="text">ユーザー</div>
+              <i class="dropdown icon"></i>
+              <div class="menu">
+                <strong class="item"><%= current_user.email %></strong>
+                <%= link_to 'プロフィール変更', edit_user_registration_path, class: "item" %>
+                <%= link_to 'ログアウト', destroy_user_session_path, class: "item", method: :delete %>
+              </div>
+            </div>
+          <% else %>
+            <%= link_to 'サインアップ', new_user_registration_path, class: "item" %>
+            <%= link_to 'ログイン', new_user_session_path, class: "item" %>
+          <% end %>
         </div>
       </div>
-    </div>
     </nav>
   </header>
   <%# flash message %>
   <main class="ui container">
-  <p class="notice"><%= notice %></p>
-  <p class="alert"><%= alert %></p>
+  <% flash.each do |message_type, message| %>
+    <div class="ui message">
+      <p><%= message %></p>
+    </div>
+  <% end %>
 
     <%= yield %>
   </main>
