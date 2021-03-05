@@ -2,7 +2,7 @@
     <%= link_to "グループ作成", groups_new_path, class: "ui button right floated" %>
     <ul>
         <% @groups.each do |group| %>
-            <p><%= group.title %></p>
+            <p><%= link_to group.title, "/groups/#{group.id}" %></p>
         <% end %>
     </ul>
 </div>

@@ -5,6 +5,10 @@ class GroupsController < ApplicationController
         @groups = current_user.groups.all
     end
 
+    def show
+        @group = Group.find_by(id: params[:id])
+    end
+
     def new
         @group = current_user.groups.build
     end
