@@ -1,2 +1,28 @@
-<h1><%= @group.title %></h1>
-<small><%= @group.created_at %></small>
+<div class="ui container">
+    <h1><%= @group.title %></h1>
+    <h2>メンバー</h2>
+    <% if current_user.id == @group.user_id %>
+        <%= link_to "削除", "/groups/#{@group.id}/destroy", {method: :delete, class: "ui button red"} %>
+    <% end %>
+
+    <% if !@group.users.include?(current_user) %>
+        <%= link_to "参加", "/groups/#{@group.id}/join", {method: :post, class: "ui button blue"} %>
+    <% end %>
+    <div class="ui middle aligned divided list">
+    <% @group.users.each do |user| %>
+        <div class="item">
+            <div class="right floated content">
+                <div class="ui button">Add</div>
+            </div>
+            <% if user.image.attached? %>
+                <%= image_tag user.image, class: "ui avatar image" %>
+            <% end %>
+            <div class="content">
+                <% if @group.user_id == user.id %>
+                    <i class="user icon"></i>
+                <% end %>
+                <%= user.name %>
+            </div>
+        </div>
+    <% end %>
+</div>

@@ -1,5 +1,6 @@
 class GroupsController < ApplicationController
     before_action :authenticate_user!
+    before_action :is_owner?, only: [:destroy]
 
     def index
         @groups = current_user.groups.all
@@ -26,8 +27,36 @@ class GroupsController < ApplicationController
         end
     end
 
+    def join
+        @group = Group.find_by(id: params[:id])
+        if @group && !already_join?
+            @group.users << current_user
+            redirect_back(fallback_location: root_path)
+        else
+            redirect_to root_url
+        end
+    end
+
+    def destroy
+        @group.destroy
+        flash[:success] = "グループを削除しました。"
+        redirect_to root_url
+    end
+
     private
+        # strong parameter
         def group_params
             params.require(:group).permit(:title)
+        end
+
+        # グループのオーナーかどうか
+        def is_owner?
+            @group = Group.find_by(id: params[:id])
+            current_user == @group.user_id
+        end
+
+        def already_join?
+            @group = Group.find_by(id: params[:id])
+            @group.users.include?(current_user)
         end
 end
