@@ -9,20 +9,30 @@
         <%= link_to "参加", "/groups/#{@group.id}/join", {method: :post, class: "ui button blue"} %>
     <% end %>
     <div class="ui middle aligned divided list">
-    <% @group.users.each do |user| %>
-        <div class="item">
-            <div class="right floated content">
-                <div class="ui button">Add</div>
-            </div>
-            <% if user.image.attached? %>
-                <%= image_tag user.image, class: "ui avatar image" %>
-            <% end %>
-            <div class="content">
-                <% if @group.user_id == user.id %>
-                    <i class="user icon"></i>
+        <% @group.users.each do |user| %>
+            <div class="item">
+                <div class="right floated content">
+                    <div class="ui button">Add</div>
+                </div>
+                <% if user.image.attached? %>
+                    <%= image_tag user.image, class: "ui avatar image" %>
                 <% end %>
-                <%= user.name %>
+                <div class="content">
+                    <% if @group.user_id == user.id %>
+                        <i class="user icon"></i>
+                    <% end %>
+                    <%= user.name %>
+                </div>
             </div>
-        </div>
-    <% end %>
+        <% end %>
+    </div>
+
+    <h1>Chat</h1>
+    <div id="messages" data-group_id="<%= @group.id %>">
+        <%= render @messages %>
+    </div>
+    <form  class="ui form">
+        <label>Say something:</label><br>
+        <input type="text" data-behavior="room_speaker">
+    </form>
 </div>
