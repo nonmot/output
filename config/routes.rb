@@ -2,12 +2,14 @@ Rails.application.routes.draw do
   devise_for :users
   root 'pages#index'
   
-  get 'groups' => "groups#index"
-  get 'groups/new' => "groups#new"
-  get "groups/:id" => "groups#show"
-  post "groups/create" => "groups#create"
+  # get 'groups' => "groups#index"
+  # get 'groups/new' => "groups#new"
+  # get "groups/:id" => "groups#show"
+  # post "groups/create" => "groups#create"
   post "groups/:id/join" => "groups#join"
   delete "groups/:id/destroy" => "groups#destroy"
+
+  resources :groups
 
   resources :messages, only: [:create, :destroy]
 

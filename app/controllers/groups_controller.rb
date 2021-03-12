@@ -1,6 +1,6 @@
 class GroupsController < ApplicationController
     before_action :authenticate_user!
-    before_action :is_owner?, only: [:destroy]
+    before_action :is_owner?, only: [:edit, :update, :destroy]
 
     def index
         @groups = current_user.groups.all
@@ -29,6 +29,20 @@ class GroupsController < ApplicationController
         end
     end
 
+    def edit
+        @group = Group.find_by(id: params[:id])
+    end
+
+    def update
+        @group = Group.find_by(id: params[:id])
+        if @group.update(group_params)
+            flash[:success] = "グループを更新しました。"
+            redirect_to @group
+        else
+            render "groups/edit"
+        end
+    end
+
     def join
         @group = Group.find_by(id: params[:id])
         if @group && !already_join?
@@ -48,7 +62,7 @@ class GroupsController < ApplicationController
     private
         # strong parameter
         def group_params
-            params.require(:group).permit(:title)
+            params.require(:group).permit(:title, :introduction)
         end
 
         # グループのオーナーかどうか

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_08_095117) do
+ActiveRecord::Schema.define(version: 2021_03_12_044610) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -68,16 +68,6 @@ ActiveRecord::Schema.define(version: 2021_03_08_095117) do
     t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
-  create_table "posts", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "group_id"
-    t.string "content"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["group_id"], name: "index_posts_on_group_id"
-    t.index ["user_id"], name: "index_posts_on_user_id"
-  end
-
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -111,6 +101,4 @@ ActiveRecord::Schema.define(version: 2021_03_08_095117) do
   add_foreign_key "group_users", "groups"
   add_foreign_key "group_users", "users"
   add_foreign_key "groups", "users"
-  add_foreign_key "posts", "groups"
-  add_foreign_key "posts", "users"
 end

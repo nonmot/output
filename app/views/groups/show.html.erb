@@ -1,8 +1,10 @@
 <div class="ui container">
     <h1><%= @group.title %></h1>
+    <p><%= @group.introduction %></p>
     <h2>メンバー</h2>
     <% if current_user.id == @group.user_id %>
-        <%= link_to "削除", "/groups/#{@group.id}/destroy", {method: :delete, class: "ui button red"} %>
+        <%= link_to "編集", edit_group_path(@group), {class: "ui button blue"} %>
+        <%= link_to "削除", @group, {method: :delete, class: "ui button red"} %>
     <% end %>
 
     <% if !@group.users.include?(current_user) %>
@@ -16,6 +18,8 @@
                 </div>
                 <% if user.image.attached? %>
                     <%= image_tag user.image, class: "ui avatar image" %>
+                <% else %>
+                    <%= image_tag "/images/default_user.png", class: "ui avatar image" %>
                 <% end %>
                 <div class="content">
                     <% if @group.user_id == user.id %>

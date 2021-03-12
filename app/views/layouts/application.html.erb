@@ -28,6 +28,8 @@
               <div class="text">
                 <% if current_user.image.attached? %>
                   <%= image_tag current_user.image, class: "ui avatar image" %>
+                <% else %>
+                  <%= image_tag "/images/default_user.png", class: "ui avatar image" %>
                 <% end %>
                 <span><%= current_user.name %></span>
               </div>
