@@ -8,6 +8,7 @@ class GroupsController < ApplicationController
 
     def show
         @group = Group.find_by(id: params[:id])
+        @message = Message.new
         @messages = Message.where(group_id: params[:id])
     end
 

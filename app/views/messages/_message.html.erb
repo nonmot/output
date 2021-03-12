@@ -1,3 +1,14 @@
-<div class="message">
-    <p><%= message.content %></p>
-</div>
+<% if message.user_id != current_user.id %>
+    <div class="othermessage message">
+        <small><%= username(message) %></small>
+        <p><%= message.content %></p>
+        <small><%= message.created_at %></small>
+    </div>
+<% else %>
+    <div class="mymessage message">
+        <small><%= username(message) %></small>
+        <p><%= message.content %></p>
+        <small><%= message.created_at %></small>
+        <%= link_to "削除", "/messages/#{message.id}", {method: :delete} %>
+    </div>
+<% end %>

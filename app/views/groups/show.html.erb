@@ -31,8 +31,13 @@
     <div id="messages" data-group_id="<%= @group.id %>">
         <%= render @messages %>
     </div>
-    <form  class="ui form">
-        <label>Say something:</label><br>
-        <input type="text" data-behavior="room_speaker">
-    </form>
+
+    <%= form_with(model: @message, local: true, class: "ui form") do |f| %>
+        <%= f.label :content, "Say somethig:" %>
+        <%= f.text_field :content %>
+        <%= f.hidden_field :user_id, value: current_user.id %>
+        <%= f.hidden_field :group_id, value: @group.id %>
+
+        <%= f.submit "送信", class: "ui button", 'data-disable-with': false %>
+    <% end %>
 </div>

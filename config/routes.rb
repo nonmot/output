@@ -8,5 +8,9 @@ Rails.application.routes.draw do
   post "groups/create" => "groups#create"
   post "groups/:id/join" => "groups#join"
   delete "groups/:id/destroy" => "groups#destroy"
+
+  resources :messages, only: [:create, :destroy]
+
+  mount ActionCable.server, at: '/cable'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
