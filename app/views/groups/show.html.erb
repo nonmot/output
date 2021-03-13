@@ -38,14 +38,16 @@
         <%= render @messages %>
     </div>
 
-    <%= form_with(model: @message, local: true, class: "ui form bottom fixed") do |f| %>
-    <div class="field">
-        <%= f.label :content, "Say somethig:" %>
-        <%= f.text_area :content %>
-    </div>
-        <%= f.hidden_field :user_id, value: current_user.id %>
-        <%= f.hidden_field :group_id, value: @group.id %>
+    <% if @group.users.include?(current_user) %>
+        <%= form_with(model: @message, local: true, class: "ui form bottom fixed") do |f| %>
+        <div class="field">
+            <%= f.label :content, "Say somethig:" %>
+            <%= f.text_area :content %>
+        </div>
+            <%= f.hidden_field :user_id, value: current_user.id %>
+            <%= f.hidden_field :group_id, value: @group.id %>
 
-        <%= f.submit "送信", class: "ui button", 'data-disable-with': false %>
+            <%= f.submit "送信", class: "ui button", 'data-disable-with': false %>
+        <% end %>
     <% end %>
 </div>
