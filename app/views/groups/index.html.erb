@@ -1,17 +1,32 @@
 <div class="ui container">
-    <div class="ui clearing segment">
-        <%= link_to "グループ作成", new_group_path, class: "ui button green right floated" %>
+    <div class="create_group">
+        <%= link_to "グループ作成", new_group_path, class: "ui button green create_group_button" %>
     </div>
-    <ul>
+    <div id="mygroup">
         <% @groups.each do |group| %>
-            <div class="ui middle aligned divided list">
-                <div class="item">
-                    <div class="right floated content">
-                        <div class="ui button red">退出</div>
+            <a class="ui card" href="<%= group_path(group) %>">
+                <div class="content">
+                    <div class="header"><%= group.title %></div>
+                    <div class="meta">
+                        <span class="category"></span>
                     </div>
-                    <div class="content"><%= link_to group.title, "/groups/#{group.id}" %></div>
+                    <div class="description">
+                        <p><%= group.introduction %></p>
+                    </div>
                 </div>
-            </div>
+                <div class="extra content">
+                    <div class="right floated author">
+                        <% if owner(group.user_id).image.attached? %>
+                            <%= image_tag owner(group.user_id).image, class: "ui avatar image" %>
+                        <% else %>
+                            <%= image_tag "/images/default_user.png", class: "ui avatar image" %>
+                        <% end %>
+                        <%= owner(group.user_id).name %>
+                        <br>
+                        <small><%= l group.created_at %></small>
+                    </div>
+                </div>
+            </a>
         <% end %>
-    </ul>
+    </div>
 </div>

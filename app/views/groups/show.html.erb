@@ -1,11 +1,13 @@
 <div class="ui container">
+    <% if current_user.id == @group.user_id %>
+        <div class="manage_group">
+            <%= link_to "編集", edit_group_path(@group), {class: "ui button blue"} %>
+            <%= link_to "削除", @group, {method: :delete, class: "ui button red"} %>
+        </div>
+    <% end %>
     <h1><%= @group.title %></h1>
     <p><%= @group.introduction %></p>
     <h2>メンバー</h2>
-    <% if current_user.id == @group.user_id %>
-        <%= link_to "編集", edit_group_path(@group), {class: "ui button blue"} %>
-        <%= link_to "削除", @group, {method: :delete, class: "ui button red"} %>
-    <% end %>
 
     <% if !@group.users.include?(current_user) %>
         <%= link_to "参加", "/groups/#{@group.id}/join", {method: :post, class: "ui button blue"} %>
@@ -36,9 +38,11 @@
         <%= render @messages %>
     </div>
 
-    <%= form_with(model: @message, local: true, class: "ui form") do |f| %>
+    <%= form_with(model: @message, local: true, class: "ui form bottom fixed") do |f| %>
+    <div class="field">
         <%= f.label :content, "Say somethig:" %>
-        <%= f.text_field :content %>
+        <%= f.text_area :content %>
+    </div>
         <%= f.hidden_field :user_id, value: current_user.id %>
         <%= f.hidden_field :group_id, value: @group.id %>
 

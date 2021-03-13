@@ -36,7 +36,7 @@ class GroupsController < ApplicationController
     def update
         @group = Group.find_by(id: params[:id])
         if @group.update(group_params)
-            flash[:success] = "グループを更新しました。"
+            flash[:success] = "グループを更新しました！"
             redirect_to @group
         else
             render "groups/edit"
@@ -68,7 +68,7 @@ class GroupsController < ApplicationController
         # グループのオーナーかどうか
         def is_owner?
             @group = Group.find_by(id: params[:id])
-            current_user == @group.user_id
+            redirect_to root_url unless current_user.id == @group.user_id
         end
 
         def already_join?
