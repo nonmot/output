@@ -27,7 +27,7 @@
                     <% if @group.user_id == user.id %>
                         <i class="user icon"></i>
                     <% end %>
-                    <%= user.name %>
+                    <%= link_to user.name, "/user/#{user.id}" %>
                 </div>
             </div>
         <% end %>

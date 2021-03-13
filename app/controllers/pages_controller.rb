@@ -3,7 +3,7 @@ class PagesController < ApplicationController
     @groups = Group.all
   end
 
-  def show
-    @groups = Group.where(user_id: current_user.id)
+  def user
+    @user = User.find_by(id: params[:id])
   end
 end

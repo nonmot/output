@@ -1,0 +1,36 @@
+<div class="ui container">
+    <% if @user.image.attached? %>
+        <%= image_tag @user.image, class: "ui avatar image" %>
+    <% else %>
+        <%= image_tag "/images/default_user.png", class: "ui avatar image" %>
+    <% end %>
+    <h1><%= @user.name %></h1>
+    <p><%= @user.introduction %></p>
+
+    <h1>参加グループ一覧</h1>
+    <% @user.groups.each do |group| %>
+        <a class="ui card" href="<%= group_path(group) %>">
+                <div class="content">
+                    <div class="header"><%= group.title %></div>
+                    <div class="meta">
+                        <span class="category"></span>
+                    </div>
+                    <div class="description">
+                        <p><%= group.introduction %></p>
+                    </div>
+                </div>
+                <div class="extra content">
+                    <div class="right floated author">
+                        <% if owner(group.user_id).image.attached? %>
+                            <%= image_tag owner(group.user_id).image, class: "ui avatar image" %>
+                        <% else %>
+                            <%= image_tag "/images/default_user.png", class: "ui avatar image" %>
+                        <% end %>
+                        <%= owner(group.user_id).name %>
+                        <br>
+                        <small><%= l group.created_at %></small>
+                    </div>
+                </div>
+            </a>
+    <% end %>
+</div>
