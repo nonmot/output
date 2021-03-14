@@ -63,3 +63,9 @@ gem 'omniauth-twitter'
 
 # Semantic UI
 gem 'semantic-ui-sass'
+
+# summernote
+gem 'jquery-rails'
+gem 'bootstrap'
+gem 'simple_form'
+gem 'summernote-rails'

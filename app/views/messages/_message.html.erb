@@ -1,14 +1,32 @@
 <% if message.user_id != current_user.id %>
     <div class="othermessage message">
-        <small><%= username(message) %></small>
-        <p><%= message.content %></p>
-        <small><%= message.created_at %></small>
+        <div>
+            <h3>
+                <% if message.user.image.attached? %>
+                    <%= image_tag message.user.image, class: "ui avatar image" %>
+                <% else %>
+                    <%= image_tag "/images/default_user.png" %>
+                <% end %>
+                <%= message.user.name %>
+            </h3>
+            <small><%= time_ago_in_words(message.created_at) %>前</small>
+        </div>
+        <%= message.content.html_safe %>
     </div>
 <% else %>
     <div class="mymessage message">
-        <small><%= username(message) %></small>
-        <p><%= message.content %></p>
-        <small><%= message.created_at %></small>
-        <%= link_to "削除", "/messages/#{message.id}", {method: :delete} %>
+        <div>
+            <% if message.user.image.attached? %>
+                <%= image_tag message.user.image, class: "ui avatar image" %>
+            <% else %>
+                <%= image_tag "/images/default_user.png" %>
+            <% end %>
+            <h3>
+                <%= message.user.name %>
+            </h3>
+            <%= link_to "削除", "/messages/#{message.id}", {method: :delete, class: "ui button red right floated"} %>
+            <small><%= time_ago_in_words(message.created_at) %>前</small>
+        </div>
+        <%= message.content.html_safe %>
     </div>
 <% end %>

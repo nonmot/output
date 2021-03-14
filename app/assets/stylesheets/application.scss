@@ -1,3 +1,6 @@
+@import "bootstrap";
+@import "summernote-bs4";
+
 @import "semantic-ui";
 
 a {
@@ -15,6 +18,14 @@ a {
         margin: 30px 0;
     }
 
+    .member {
+        margin-top: 50px;
+    }
+
+    .discussion {
+        margin-top: 50px;
+    }
+
     .create_group {
         margin-bottom: 50px;
         display: flex;
@@ -24,6 +35,27 @@ a {
     .manage_group {
         display: flex;
         justify-content: flex-end;
+    }
+
+    #messages {
+        .message {
+            border: 1px solid rgba(34, 36, 38, 0.15);
+            border-radius: 5px;
+            padding: 10px;
+
+            h3 {
+                margin: 0;
+                display: inline-block;
+                vertical-align: bottom;
+                font-size: 23px;
+            }
+
+            small {
+                margin-left: 10px;
+                vertical-align: center;
+                font-size: 14px;
+            }
+        }
     }
 }
 
