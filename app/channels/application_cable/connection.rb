@@ -1,3 +1,1 @@
-module ApplicationCable
-  
-end
+
