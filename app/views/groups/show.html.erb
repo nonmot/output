@@ -1,5 +1,5 @@
 <div class="ui container">
-    <% if current_user.id == @group.user_id %>
+    <% if current_user && current_user.id == @group.user_id %>
         <div class="manage_group">
             <%= link_to "編集", edit_group_path(@group), {class: "ui button blue"} %>
             <%= link_to "削除", @group, {method: :delete, class: "ui button red"} %>
@@ -9,7 +9,7 @@
     <p><%= @group.introduction.html_safe %></p>
 
     <div class="member">
-        <% if !@group.users.include?(current_user) %>
+        <% if current_user && !@group.users.include?(current_user) %>
             <%= link_to "参加", "/groups/#{@group.id}/join", {method: :post, class: "ui button blue"} %>
         <% end %>
 
@@ -45,7 +45,7 @@
 
     <div class="discussion">
         <h1>Discussion</h1>
-        <div id="messages" data-group_id="<%= @group.id %>">
+        <div id="messages">
             <%= render @messages %>
         </div>
         <% if @group.users.include?(current_user) %>
