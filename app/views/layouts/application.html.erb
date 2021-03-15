@@ -23,8 +23,6 @@
         <a href="/" class="header item">
           <img src="/Output.png" alt="" class="logo">
         </a>
-        <a href="/groups" class="item">Groups</a>
-        <a href="#" class="item">Friend</a>
         
         <div class="right menu">
           <% if user_signed_in? %>
@@ -39,6 +37,9 @@
               </div>
               <i class="dropdown icon"></i>
               <div class="menu">
+                <a href="/groups" class="item">Groups</a>
+                <a href="#" class="item">Friend</a>
+                <div class="divider"></div>
                 <strong class="item"><%= current_user.email %></strong>
                 <%= link_to 'プロフィール変更', edit_user_registration_path, class: "item" %>
                 <%= link_to 'ログアウト', destroy_user_session_path, class: "item", method: :delete %>

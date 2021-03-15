@@ -19,13 +19,19 @@ $(document).on('turbolinks:load', function() {
     });
 });
 
+$(document).on('turbolinks:load', function() {
+    $('.ui.accordion')
+    .accordion()
+    ;
+});
+
 
 // summernoteの初期設定
 $(document).on('turbolinks:load', function() {
     $('[data-provider="summernote"]').each(function() {
         $(this).summernote({
             lang: 'ja-JP',
-            height: 300,
+            height: 150,
         });
     });
 });
