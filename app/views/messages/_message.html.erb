@@ -5,7 +5,7 @@
                 <% if message.user.image.attached? %>
                     <%= image_tag message.user.image, class: "ui avatar image" %>
                 <% else %>
-                    <%= image_tag "/images/default_user.png" %>
+                    <%= image_tag "/images/default_user.png", class: "ui avatar image" %>
                 <% end %>
                 <%= message.user.name %>
             </h3>
@@ -19,7 +19,7 @@
             <% if message.user.image.attached? %>
                 <%= image_tag message.user.image, class: "ui avatar image" %>
             <% else %>
-                <%= image_tag "/images/default_user.png" %>
+                <%= image_tag "/images/default_user.png", class: "ui avatar image" %>
             <% end %>
             <h3>
                 <%= message.user.name %>
