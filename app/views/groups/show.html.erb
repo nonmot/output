@@ -6,48 +6,51 @@
         </div>
     <% end %>
     <h1><%= @group.title %></h1>
-    <p><%= @group.introduction %></p>
-    <h2>メンバー</h2>
+    <p><%= @group.introduction.html_safe %></p>
 
-    <% if !@group.users.include?(current_user) %>
-        <%= link_to "参加", "/groups/#{@group.id}/join", {method: :post, class: "ui button blue"} %>
-    <% end %>
-    <div class="ui middle aligned divided list">
-        <% @group.users.each do |user| %>
-            <div class="item">
-                <div class="right floated content">
-                    <div class="ui button">Add</div>
-                </div>
-                <% if user.image.attached? %>
-                    <%= image_tag user.image, class: "ui avatar image" %>
-                <% else %>
-                    <%= image_tag "/images/default_user.png", class: "ui avatar image" %>
-                <% end %>
-                <div class="content">
-                    <% if @group.user_id == user.id %>
-                        <i class="user icon"></i>
+    <div class="member">
+        <h2>メンバー</h2>
+        <% if !@group.users.include?(current_user) %>
+            <%= link_to "参加", "/groups/#{@group.id}/join", {method: :post, class: "ui button blue"} %>
+        <% end %>
+        <div class="ui middle aligned divided list">
+            <% @group.users.each do |user| %>
+                <div class="item">
+                    <div class="right floated content">
+                        <div class="ui button">Add</div>
+                    </div>
+                    <% if user.image.attached? %>
+                        <%= image_tag user.image, class: "ui avatar image" %>
+                    <% else %>
+                        <%= image_tag "/images/default_user.png", class: "ui avatar image" %>
                     <% end %>
-                    <%= link_to user.name, "/user/#{user.id}" %>
+                    <div class="content">
+                        <% if @group.user_id == user.id %>
+                            <i class="user icon"></i>
+                        <% end %>
+                        <%= link_to user.name, "/user/#{user.id}" %>
+                    </div>
                 </div>
-            </div>
-        <% end %>
-    </div>
-
-    <h1>Chat</h1>
-    <div id="messages" data-group_id="<%= @group.id %>">
-        <%= render @messages %>
-    </div>
-
-    <% if @group.users.include?(current_user) %>
-        <%= form_with(model: @message, local: true, class: "ui form bottom fixed") do |f| %>
-        <div class="field">
-            <%= f.label :content, "Say somethig:" %>
-            <%= f.text_area :content %>
+            <% end %>
         </div>
-            <%= f.hidden_field :user_id, value: current_user.id %>
-            <%= f.hidden_field :group_id, value: @group.id %>
+    </div>
 
-            <%= f.submit "送信", class: "ui button", 'data-disable-with': false %>
+    <div class="discussion">
+        <h1>Discussion</h1>
+        <div id="messages" data-group_id="<%= @group.id %>">
+            <%= render @messages %>
+        </div>
+        <% if @group.users.include?(current_user) %>
+            <%= form_with(model: @message, local: true, class: "ui form bottom fixed") do |f| %>
+            <div class="field">
+                <%= f.label :content, "Say somethig:" %>
+                <%= f.text_area :content, 'data-provider': :summernote %>
+            </div>
+                <%= f.hidden_field :user_id, value: current_user.id %>
+                <%= f.hidden_field :group_id, value: @group.id %>
+
+                <%= f.submit "送信", class: "ui button", 'data-disable-with': false %>
+            <% end %>
         <% end %>
-    <% end %>
+    </div>
 </div>

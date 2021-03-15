@@ -1,0 +1,13 @@
+<%= form_with model: @group, local: true, html: {class: "ui form"} do |f| %>
+        <div class="field">
+            <%= f.label :title %>
+            <%= f.text_field :title %>
+        </div>
+
+        <div class="field">
+            <%= f.label :introduction %>
+            <%= f.text_area :introduction, 'data-provider': :summernote %>
+        </div>
+
+        <%= f.submit submit, class: "ui button" %>
+<% end %>
