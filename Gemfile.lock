@@ -249,6 +249,7 @@ PLATFORMS
   x64-mingw32
 
 DEPENDENCIES
+  addressable
   bootsnap (>= 1.4.4)
   bootstrap
   byebug
