@@ -34,7 +34,9 @@ class GoogleBook
         @googlebooksapi_id = @item['id']
         @buy_link = @item['saleInfo']['buyLink']
         @description = @volume_info['description']
-        @image = @volume_info['imageLinks']['smallThumbnail']
+        if @volume_info['imageLinks']
+            @image = @volume_info['imageLinks']['smallThumbnail']
+        end
         @published_at = @volume_info['publishedDate']
         @title = @volume_info['title']
     end

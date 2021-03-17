@@ -7,4 +7,8 @@ class BooksController < ApplicationController
     def result
         @books = GoogleBook.search(params[:keyword])
     end
+
+    def subscribe
+
+    end
 end

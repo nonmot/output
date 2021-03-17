@@ -1,14 +1,14 @@
 <h1>Result</h1>
 
-
-
 <div class="ui three column grid">
     <% @books.each do |book| %>
         <div class="column">
             <div class="ui fluid card">
+            <% if book.image %>
                 <div class="image">
                     <%= image_tag book.image %>
                 </div>
+            <% end %>
                 <div class="content">
                     <a class="header"><%= book.title %></a>
                 </div>

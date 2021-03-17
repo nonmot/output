@@ -11,6 +11,7 @@ Rails.application.routes.draw do
 
   get "books/search" => "books#search"
   get "books/result" => "books#result"
+  post "books/subscribe" => "books#subscribe"
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
