@@ -39,8 +39,9 @@
 
     <% if @group.book %>
         <%= @group.book.title %>
+        <%= image_tag @group.book.image_link %>
     <% else %>
-        <p>書籍はありません。</p>
+        <p>書籍が登録されていません。</p>
     <% end %>
 
 

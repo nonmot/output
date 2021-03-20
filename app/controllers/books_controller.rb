@@ -2,7 +2,7 @@ class BooksController < ApplicationController
     include GoogleBooksApi
 
     def create
-        @book = Book.new(title: params[:title], auther: params[:author], group_id: params[:group_id])
+        @book = Book.new(title: params[:title], auther: params[:author], group_id: params[:group_id], image_link: params[:image_link])
         @group = Group.find_by(id: params[:group_id])
         if @book.save
             redirect_to @group
