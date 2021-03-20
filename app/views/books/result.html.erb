@@ -8,8 +8,13 @@
                 <div class="image">
                     <%= image_tag book.image %>
                 </div>
+            <% else %>
+                <div class="image">
+                    <%= image_tag "/images/No image.png" %>
+                </div>
             <% end %>
                 <div class="content">
+                    <%= link_to book.title, books_path(title: book.title, author: book.author, group_id: @group.id), method: :post %>
                     <a class="header"><%= book.title %></a>
                 </div>
             </div>
