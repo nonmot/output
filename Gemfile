@@ -69,3 +69,10 @@ gem 'jquery-rails'
 gem 'bootstrap'
 gem 'simple_form'
 gem 'summernote-rails'
+
+gem 'addressable'
+
+gem 'will_paginate'
+gem 'bootstrap-will_paginate'
+
+gem 'cloudinary'

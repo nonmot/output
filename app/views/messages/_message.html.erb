@@ -9,6 +9,9 @@
             <%= message.user.name %>
         </h3>
         <small><%= time_ago_in_words(message.created_at) %>前</small>
+        <% if message.user == current_user %>
+            <%= link_to "削除", message_path(message.id), {method: :delete, class:"ui button red right floated"} %>
+        <% end %>
     </div>
     <%= message.content.html_safe %>
 </div>

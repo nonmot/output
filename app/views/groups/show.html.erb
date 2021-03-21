@@ -1,12 +1,49 @@
 <div class="ui container">
     <% if current_user && current_user.id == @group.user_id %>
-        <div class="manage_group">
-            <%= link_to "編集", edit_group_path(@group), {class: "ui button blue"} %>
-            <%= link_to "削除", @group, {method: :delete, class: "ui button red"} %>
+        <div class="ui floating labeled icon dropdown button right floated">
+            <i class="cog icon"></i>
+            <span class="text">グループの設定</span>
+            <div class="menu">
+                <% if @group.book %>
+                    <div class="header">書籍を削除する</div>
+                    <%= link_to "書籍を削除", book_path(id: @group.book), method: :delete %>
+                <% else %>
+                    <div class="header">
+                        書籍を追加する
+                    </div>
+                    <%= form_with url: books_result_path, method: :get, class: "ui left icon input" do |f| %>
+                        <i class="search icon"></i>
+                        <%= f.text_field :keyword, placeholder: "書籍を検索" %>
+                        <%= f.hidden_field :group_id, value: @group.id%>
+                        <%= f.submit "検索", class: "ui button" %>
+                    <% end %>
+                <% end %>
+                <div class="header">
+                <i class="cog icon"></i>
+                    設定
+                </div>
+                <div class="divider"></div>
+                <div class="item">
+                    <div class="ui red empty circular label"></div>
+                    <%= link_to "削除", @group, {method: :delete, class: "ui button red"} %>
+                </div>
+                <div class="item">
+                    <div class="ui blue empty circular label"></div>
+                    <%= link_to "編集", edit_group_path(@group), {class: "ui button blue"} %>
+                </div>
+            </div>
         </div>
     <% end %>
     <h1 class="ui teal header"><%= @group.title %></h1>
     <p><%= @group.introduction.html_safe %></p>
+
+    <% if @group.book %>
+        <%= @group.book.title %>
+        <%= image_tag @group.book.image_link %>
+    <% else %>
+        <p>書籍が登録されていません。</p>
+    <% end %>
+
 
     <div class="member">
         <% if current_user && !@group.users.include?(current_user) %>

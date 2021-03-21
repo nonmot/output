@@ -9,6 +9,9 @@ Rails.application.routes.draw do
 
   resources :messages, only: [:create, :destroy]
 
-  mount ActionCable.server, at: '/cable'
+  resources :books, only: [:create, :destroy]
+  get "books/search" => "books#search"
+  get "books/result" => "books#result"
+
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

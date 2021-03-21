@@ -1,0 +1,11 @@
+<h1>Search</h1>
+
+<%= form_with url: books_result_path, method: :get, class: "ui form" do |f| %>
+    <div class="field">
+        <%= f.label "キーワード" %>
+        <%= f.text_field :keyword, placeholder: "キーワードを入力してください。" %>
+
+
+        <%= f.submit "検索", class: "ui button" %>
+    </div>
+<% end %>

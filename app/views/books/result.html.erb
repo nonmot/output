@@ -1,0 +1,22 @@
+<h1>Result</h1>
+
+<div class="ui three column grid">
+    <% @books.each do |book| %>
+        <div class="column">
+            <div class="ui fluid card">
+            <% if book.image %>
+                <div class="image">
+                    <%= image_tag book.image %>
+                </div>
+            <% else %>
+                <div class="image">
+                    <%= image_tag "/images/No image.png" %>
+                </div>
+            <% end %>
+                <div class="content">
+                    <%= link_to book.title, books_path(title: book.title, author: book.author, group_id: @group.id, image_link: book.image), method: :post, class: "header" %>
+                </div>
+            </div>
+        </div>
+    <% end %>
+</div>

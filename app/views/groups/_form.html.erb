@@ -1,11 +1,10 @@
 <%= form_with model: @group, local: true, html: {class: "ui form"} do |f| %>
         <div class="field">
-            <%= f.label :title %>
-            <%= f.text_field :title %>
+            <%= f.text_field :title, placeholder: "グループ名を入力してください。" %>
         </div>
 
         <div class="field">
-            <%= f.label :introduction %>
+            <%= f.label :introduction, "説明文" %>
             <%= f.text_area :introduction, 'data-provider': :summernote %>
         </div>
 
