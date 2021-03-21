@@ -14,8 +14,7 @@
                 </div>
             <% end %>
                 <div class="content">
-                    <%= link_to book.title, books_path(title: book.title, author: book.author, group_id: @group.id, image_link: book.image), method: :post %>
-                    <a class="header"><%= book.title %></a>
+                    <%= link_to book.title, books_path(title: book.title, author: book.author, group_id: @group.id, image_link: book.image), method: :post, class: "header" %>
                 </div>
             </div>
         </div>
