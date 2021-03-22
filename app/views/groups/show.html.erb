@@ -37,12 +37,16 @@
     <h1 class="ui teal header"><%= @group.title %></h1>
     <p><%= @group.introduction.html_safe %></p>
 
-    <% if @group.book %>
-        <%= @group.book.title %>
-        <%= image_tag @group.book.image_link %>
-    <% else %>
-        <p>書籍が登録されていません。</p>
-    <% end %>
+
+    <div class="book">
+    <h1>書籍</h1>
+        <% if @group.book %>
+            <%= image_tag @group.book.image_link %>
+            <h2><%= @group.book.title %></h2>
+        <% else %>
+            <p>書籍が登録されていません。</p>
+        <% end %>
+    </div>
 
 
     <div class="member">

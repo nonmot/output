@@ -46,6 +46,7 @@ a {
             border: 1px solid rgba(34, 36, 38, 0.15);
             border-radius: 5px;
             padding: 10px;
+            margin: 10px 0;
 
             h3 {
                 margin: 0;
@@ -62,69 +63,14 @@ a {
             }
         }
     }
-}
 
-// #messages {
-//     width: 100%;
-//     padding: 20px 10px;
-//     margin: 15px auto;
-//     font-size: 14px;
-//     background: #7da4cd;
+    .book {
+        margin-top: 100px;
 
-//     .othermessage {
-//         p {
-//             display: inline-block;
-//             position: relative; 
-//             margin: 5px 0 0 50px;
-//             padding: 10px;
-//             max-width: 250px;
-//             border-radius: 12px;
-//             background: #edf1ee;
-
-//             &:after {
-//                 content: "";
-//                 display: inline-block;
-//                 position: absolute;
-//                 top: 3px; 
-//                 left: -19px;
-//                 border: 8px solid transparent;
-//                 border-right: 18px solid #edf1ee;
-//                 -webkit-transform: rotate(35deg);
-//                 transform: rotate(35deg);
-//             }
-//         }
-//     }
-
-//     .mymessage {
-//         text-align: right;
-
-//         p{
-//             display: inline-block;
-//             position: relative; 
-//             margin: 5px 0 0 50px;
-//             padding: 10px;
-//             max-width: 250px;
-//             border-radius: 12px;
-//             background: #30e852;
-//             font-size: 15px;
-//             text-align: right;
-
-//             &:after {
-//                 content: "";
-//                 position: absolute;
-//                 top: 3px; 
-//                 right: -19px;
-//                 border: 8px solid transparent;
-//                 border-left: 18px solid #30e852;
-//                 -webkit-transform: rotate(-35deg);
-//                 transform: rotate(-35deg);
-//             }
-//         }
-//     }
-// }
-
-#messages {
-    .message {
-        margin: 10px 0;
+        h2 {
+            display: inline-block;
+            vertical-align: center;
+            margin-left: 20px;
+        }
     }
 }
