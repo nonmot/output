@@ -1,16 +1,24 @@
-<h2>Resend unlock instructions</h2>
+<div class="ui middle aligned center aligned grid auth">
+    <div class="column">
+        <h2 class="ui header teal">アカウント凍結解除</h2>
 
-<%= form_for(resource, as: resource_name, url: unlock_path(resource_name), html: { method: :post }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+        <%= form_for(resource, as: resource_name, url: unlock_path(resource_name), html: { method: :post, class: "ui form" }) do |f| %>
+        <div class="ui stacked segment">
+            <%= render "devise/shared/error_messages", resource: resource %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+            <div class="field">
+                <%= f.label :email %><br />
+                <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+            </div>
 
-  <div class="actions">
-    <%= f.submit "Resend unlock instructions" %>
-  </div>
-<% end %>
+            <div class="actions">
+                <%= f.submit "送信", class: "fluid ui button" %>
+            </div>
+            <% end %>
+        </div>
 
-<%= render "devise/shared/links" %>
+        <div class="links">
+            <%= render "devise/shared/links" %>
+        </div>
+    </div>
+</div>

@@ -7,6 +7,11 @@ a {
     font-size: 15px;
 }
 
+.links {
+    margin-top: 20px;
+}
+
+
 .auth .column {
     max-width: 450px;
     position: absolute;
@@ -18,6 +23,7 @@ a {
 
 .main {
     margin-top: 100px;
+    margin-bottom: 100px;
 
     .card {
         width: 100%;
