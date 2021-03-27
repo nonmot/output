@@ -76,3 +76,5 @@ gem 'will_paginate'
 gem 'bootstrap-will_paginate'
 
 gem 'cloudinary'
+
+gem 'rack-cors'
