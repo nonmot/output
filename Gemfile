@@ -56,10 +56,6 @@ group :production do
   gem 'pg'
 end
 
-# Devise
-gem 'devise'
-gem 'omniauth', '1.9.1'
-gem 'omniauth-twitter'
 
 # Semantic UI
 gem 'semantic-ui-sass'
@@ -78,3 +74,7 @@ gem 'bootstrap-will_paginate'
 gem 'cloudinary'
 
 gem 'rack-cors'
+
+# devise
+gem 'devise'
+gem 'devise_token_auth'

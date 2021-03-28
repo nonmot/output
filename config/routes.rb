@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :users
+  mount_devise_token_auth_for 'User', at: 'auth'
   root 'pages#index'
 
   get "user/:id" => "pages#user"
@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :groups
   post "groups/:id/join" => "groups#join"
 
+  
   resources :messages, only: [:create, :destroy]
 
   resources :books, only: [:create, :destroy]
