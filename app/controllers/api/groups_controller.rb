@@ -3,12 +3,21 @@ class Api::GroupsController < ApplicationController
     def index
         groups = Group.order('created_at DESC')
         user = current_user
-        render json: groups
+        object = {
+            groups: groups,
+            user: user
+        }
+        render json: object
     end
 
     def show
         group = Group.find_by(id: params[:id])
-        render json: group
+        user = User.find_by(id: group.user_id)
+        json = {
+            group: group,
+            user: user
+        }
+        render json: json
     end
 
     def create
@@ -18,6 +27,15 @@ class Api::GroupsController < ApplicationController
             render json: {status: 'SUCCESS'}
         else
             render json: {status: 'ERROR'}
+        end
+    end
+
+    def destroy
+        group = Group.find_by(id: params[:id])
+        if group.destroy
+            render json: {status: 'SUCCESS'}
+        else
+            render json: {statis: 'ERROR'}
         end
     end
 
